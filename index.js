@@ -9,7 +9,7 @@ async function run() {
     //   token: core.getInput('github-token', {required: true})
     // };
     const inputs = {
-      token: "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",
+      token: "",
       org: "chiarettos",
       repo: ""
 
