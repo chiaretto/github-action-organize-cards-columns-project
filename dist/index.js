@@ -56260,6 +56260,7 @@ async function run() {
           },
         }
     );
+    console.log(repository)
 
     // Get Card Of Project
     for (project of repository.projectsV2.nodes) {

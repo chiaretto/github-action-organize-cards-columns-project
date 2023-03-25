@@ -4,7 +4,7 @@ on:
     - cron:  '*/5 * * * *'
 
 jobs:
-  update-pr:
+  update-card-project:
     runs-on: ubuntu-latest
     steps:
       - name: Update Columns Project
