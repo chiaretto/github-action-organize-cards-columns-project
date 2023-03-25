@@ -13,6 +13,9 @@ async function run() {
       repo: github.context.repo.repo,
     };
 
+    console.log('github.context.repo.owner:', github.context.repo.owner)
+    console.log('github.context.repo.repo:', github.context.repo.repo)
+
     // Get Projects From Repo
     const { repository } = await graphql(
         `
