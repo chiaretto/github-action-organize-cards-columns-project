@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update Columns Project
-        uses: chiaretto/github-action-organiza-cards-columns-project@master
+        uses: chiaretto/github-action-organize-cards-columns-project@master
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
