@@ -1,0 +1,13 @@
+name: Update Columns Project
+on:
+  schedule:
+    - cron:  '*/5 * * *'
+
+jobs:
+  update-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update PR Body
+        uses: chiaretto/github-action-organiza-cards-columns-project@master
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"

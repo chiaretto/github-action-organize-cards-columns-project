@@ -1,5 +1,5 @@
 {
-  "name": "github-action-concat-pr-body",
+  "name": "github-action-organiza-cards-columns-project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,9 +14,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chiaretto/github-action-concat-pr-body/issues"
+    "url": "https://github.com/chiaretto/github-action-organiza-cards-columns-project/issues"
   },
-  "homepage": "https://github.com/chiaretto/github-action-concat-pr-body#readme",
+  "homepage": "https://github.com/chiaretto/github-action-organiza-cards-columns-project#readme",
   "dependencies": {
     "@actions/core": "^1.2.3",
     "@actions/github": "^2.1.1",

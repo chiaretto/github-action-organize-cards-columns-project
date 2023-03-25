@@ -5,11 +5,14 @@ const github = require('@actions/github');
 async function run() {
   try {
 
+    // const inputs = {
+    //   token: core.getInput('github-token', {required: true})
+    // };
     const inputs = {
-      token: core.getInput('github-token', {required: true}),
-      replaceLastMessage: core.getInput('replace-last-message', {required: false}),
-      message: core.getInput('message', {required: true}),
-      prNumberForced: core.getInput('pr-number', {required: false}),
+      token: "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",
+      org: "chiarettos",
+      repo: ""
+
     };
 
     const client = new github.GitHub(inputs.token);

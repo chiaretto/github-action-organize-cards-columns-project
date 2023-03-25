@@ -1,6 +1,5 @@
-
-name: 'Concat a message on pull-request body'
-description: 'A github action to concat a message to pull request original body'
+name: 'Organize Project Cards with Columns Icons'
+description: 'Organize Project Cards with Columns Icons'
 author: 'Fabiano Chiaretto Fernandes'
 branding:
   icon: 'edit'
@@ -12,12 +11,3 @@ inputs:
   github-token:
     description: 'The GITHUB_TOKEN secret'
     required: true
-  message:
-    description: 'Message to concatenate'
-    required: true
-  replace-last-message:
-    description: 'Replace the last concatenated message'
-    required: false
-  pr-number:
-    description: 'Force PR Number'
-    required: false

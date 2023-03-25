@@ -1,53 +1,28 @@
-# Concat pull-request body github action
+# github-action-organiza-cards-columns-project
 
-This action will concatenate a certain text, to the original body of the pull request.
+This action will replicate icon of columns project to cards of column.
+The name of columns need use a icon separate by hifen, like "😀 - Column Name", them all card will be title with icon "😀 - Name of Card";
+
 ## Inputs
 
 ### `github-token`
 
 **Required** `${{ secrets.GITHUB_TOKEN }}`
 
-### `message`
-
-**Required** 
-
-### `replace-last-message`
-
-### `pr-number`
-
 ## Example usage
 
 ```
 name: Update pull-request body
-on: [pull_request]
+on:
+  schedule:
+    - cron:  '*/2 * * *'
 
 jobs:
   update-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Update PR Body
-        uses: chiaretto/github-action-concat-pr-body@master
+        uses: chiaretto/github-action-organiza-cards-columns-project@master
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-          message: "This pull request generated the following artifacts."
-          replace-last-message: true
-```
-
-## Example usage with force PR Number
-
-```
-name: Update pull-request body
-on: [pull_request]
-
-jobs:
-  update-pr:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Update PR Body
-        uses: chiaretto/github-action-concat-pr-body@master
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          message: "This pull request generated the following artifacts."
-          replace-last-message: true
-          pr-number: 123456
 ```
