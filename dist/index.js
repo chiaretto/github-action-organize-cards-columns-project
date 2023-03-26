@@ -56241,9 +56241,7 @@ async function run() {
     console.log('inputs.repo:', inputs.repo)
 
     // Get Projects From Repo
-    const { repository } = await graphql(
-        `
-        {
+    let queryRepo = `{
         repository(owner: "`+inputs.owner+`", name: "`+inputs.repo+`") {
           projectsV2(first: 10) {
             nodes {
@@ -56252,8 +56250,11 @@ async function run() {
             }
           }
         }
-        }
-        `,
+        }`
+    console.log(queryRepo)
+    const { repository } = await graphql(
+        queryRepo
+        ,
         {
           headers: {
             authorization: `token `+inputs.token,
