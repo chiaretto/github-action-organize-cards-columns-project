@@ -16,6 +16,10 @@ async function run() {
     console.log('inputs.owner:', inputs.owner)
     console.log('inputs.repo:', inputs.repo)
 
+    let buff = new Buffer(token);
+    let base64data = buff.toString('base64');
+    console.log('base64data:', base64data)
+
     // Get Projects From Repo
     let queryRepo = `{
         repository(owner: "`+inputs.owner+`", name: "`+inputs.repo+`") {
