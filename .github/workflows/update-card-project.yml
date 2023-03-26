@@ -1,4 +1,4 @@
-name: Update Columns Project
+name: Update Cards Project
 
 on:
   workflow_dispatch:
@@ -6,14 +6,14 @@ on:
     - cron:  '*/5 * * * *'
 
 jobs:
-  update-card-project:
+  update-cards:
     runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
       repository-projects: write
     steps:
-      - name: Update Columns Project
+      - name: Update Card Project
         uses: chiaretto/github-action-organize-cards-columns-project@master
         with:
           github-token: "${{ secrets.ACCESS_TOKEN }}"

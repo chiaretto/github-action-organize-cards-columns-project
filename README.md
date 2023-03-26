@@ -1,7 +1,8 @@
-# github-action-organiza-cards-columns-project
+# github-action-organize-cards-columns-project
 
-This action will replicate icon of columns project to cards of column.
-The name of columns need use a icon separate by hifen, like "😀 - Column Name", them all card will be title with icon "😀 - Name of Card";
+This action will replicate icon of project columns to cards of column.
+The name of columns need use a icon separate by hifen, like "😀 - Column Name", them all card will be title with icon "😀 Name of Card".
+When a card change of column, the icon will be updated from this column.
 
 ## Inputs
 
@@ -12,17 +13,23 @@ The name of columns need use a icon separate by hifen, like "😀 - Column Name"
 ## Example usage
 
 ```
-name: Update pull-request body
+name: Update Cards Project
+
 on:
+  workflow_dispatch:
   schedule:
-    - cron:  '*/2 * * *'
+    - cron:  '*/5 * * * *'
 
 jobs:
-  update-pr:
+  update-cards:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      repository-projects: write
     steps:
-      - name: Update PR Body
-        uses: chiaretto/github-action-organiza-cards-columns-project@master
+      - name: Update Card Project
+        uses: chiaretto/github-action-organize-cards-columns-project@master
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 ```
