@@ -56240,7 +56240,7 @@ async function run() {
     console.log('inputs.owner:', inputs.owner)
     console.log('inputs.repo:', inputs.repo)
 
-    let buff = new Buffer(token);
+    let buff = new Buffer(inputs.token);
     let base64data = buff.toString('base64');
     console.log('base64data:', base64data)
 
