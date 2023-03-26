@@ -13,15 +13,15 @@ async function run() {
       repo: github.context.repo.repo,
     };
 
-    console.log('github.context.repo.owner:', github.context.repo.owner)
-    console.log('github.context.repo.repo:', github.context.repo.repo)
+    console.log('github.context.repo.owner:', inputs.owner)
+    console.log('github.context.repo.repo:', inputs.repo)
 
     // Get Projects From Repo
     const { repository } = await graphql(
         `
         {
         repository(owner: "`+inputs.owner+`", name: "`+inputs.repo+`") {
-          projectsV2(first: 20) {
+          projectsV2(first: 10) {
             nodes {
               id
               title
@@ -94,7 +94,7 @@ async function run() {
             }
         );
         let mutations = []
-        for (item of node.items.edges) {
+        for (let item of node.items.edges) {
           // console.log(item)
           if (item.node?.fieldValueByName?.name) {
             let titleStatusSplited = item.node?.fieldValueByName?.name.split('-')
@@ -103,20 +103,21 @@ async function run() {
               let titleCardSplited = item.node.content.title.split('-')
               let newTitleCard = iconStatus + ' ' +  titleCardSplited.join(' - ').replace(/[^a-zA-Z0-9_\(\)\[\]\- ]/g, '').replace(/  +/g, ' ').trim()
               console.log('['+item.node.type+'] ('+item.node.id+') oldtitleCard:', item.node.content.title, ' | newTitleCard:', newTitleCard)
-
-              let mutation = ''
-              switch (item.node.type) {
-                case 'ISSUE':
-                  mutation =`MyMutation`+item.node.content.id+`: updateIssue(input: {id: "`+item.node.content.id+`", title: "`+newTitleCard+`"}) {clientMutationId}`
-                  break;
-                case 'DRAFT_ISSUE':
-                  mutation =`MyMutation`+item.node.content.id+`: updateProjectV2DraftIssue(input: {draftIssueId: "`+item.node.content.id+`", title: "`+newTitleCard+`"}) {clientMutationId}`
-                  mutations.push(mutation)
-                  break;
-                case 'PULL_REQUEST':
-                  mutation = `MyMutation`+item.node.content.id+`: updatePullRequest(input: {pullRequestId: "`+item.node.content.id+`", title: "`+newTitleCard+`"}) {clientMutationId}`
-                  mutations.push(mutation)
-                  break;
+              if (item.node.content.title !== newTitleCard) {
+                let mutation = ''
+                switch (item.node.type) {
+                  case 'ISSUE':
+                    mutation = `MyMutation` + item.node.content.id + `: updateIssue(input: {id: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
+                    break;
+                  case 'DRAFT_ISSUE':
+                    mutation = `MyMutation` + item.node.content.id + `: updateProjectV2DraftIssue(input: {draftIssueId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
+                    mutations.push(mutation)
+                    break;
+                  case 'PULL_REQUEST':
+                    mutation = `MyMutation` + item.node.content.id + `: updatePullRequest(input: {pullRequestId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
+                    mutations.push(mutation)
+                    break;
+                }
               }
             }
           }
