@@ -6,6 +6,10 @@ on:
 jobs:
   update-card-project:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      repository-projects: write
     steps:
       - name: Update Columns Project
         uses: chiaretto/github-action-organize-cards-columns-project@master
