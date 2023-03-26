@@ -1,6 +1,5 @@
 name: 'Organize Project Cards with Columns Icons'
-description: 'The name of columns need use a icon separate by hifen, like "😀 - Column Name", them all card will be title with icon "😀 Name of Card".
-When a card change of column, the icon will be updated from this column.'
+description: 'The name of columns need use a icon separate by hifen, like "😀 - Column Name", them all card will be title with icon "😀 Name of Card".'
 author: 'Fabiano Chiaretto Fernandes'
 branding:
   icon: 'edit'
