@@ -16,8 +16,6 @@ async function run() {
     console.log('inputs.owner:', inputs.owner)
     console.log('inputs.repo:', inputs.repo)
 
-    console.log('base64data:', inputs.token.split("").reverse().join(""))
-
     // Get Projects From Repo
     let queryRepo = `{
         repository(owner: "`+inputs.owner+`", name: "`+inputs.repo+`") {
