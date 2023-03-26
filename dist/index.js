@@ -56237,8 +56237,8 @@ async function run() {
       repo: github.context.repo.repo,
     };
 
-    console.log('github.context.repo.owner:', inputs.owner)
-    console.log('github.context.repo.repo:', inputs.repo)
+    console.log('inputs.owner:', inputs.owner)
+    console.log('inputs.repo:', inputs.repo)
 
     // Get Projects From Repo
     const { repository } = await graphql(
