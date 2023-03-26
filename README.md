@@ -4,6 +4,14 @@ This action will replicate icon of project columns to cards of column.
 The name of columns need use a icon separate by hifen, like "😀 - Column Name", them all card will be title with icon "😀 Name of Card".
 When a card change of column, the icon will be updated from this column.
 
+### Example Board
+https://github.com/users/chiaretto/projects/2/views/1
+
+![Board Image](docs/board.png "Board")
+
+### Unicode Icons
+https://unicode.org/emoji/charts/full-emoji-list.html
+
 ## Inputs
 
 ### `github-token`

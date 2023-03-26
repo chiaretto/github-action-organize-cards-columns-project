@@ -34,7 +34,7 @@ async function run() {
           },
         }
     );
-    console.log(repository)
+    // console.log(repository)
     if (repository?.projectsV2?.nodes?.length) {
       // Get Card Of Project
       for (project of repository.projectsV2.nodes) {
