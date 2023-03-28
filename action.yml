@@ -1,5 +1,5 @@
 name: 'Organize Project Cards with Columns Icons'
-description: 'The name of columns need use a icon separate by hifen, like "😀 - Column Name", them all card will be title with icon "😀 Name of Card".'
+description: 'The icon of columns will be reply to cards of column, like "😀 - Column Name" then "😀 Name of Card".'
 author: 'Fabiano Chiaretto Fernandes'
 branding:
   icon: 'edit'
