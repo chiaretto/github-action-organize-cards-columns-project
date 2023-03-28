@@ -56352,21 +56352,24 @@ async function run() {
             }
           }
           if (mutations.length) {
-            const queryMutation = `mutation {` + mutations.join('\n') + `}`
-            if (inputs.debug == 'true') {
-              console.log('################ queryMutation ##################')
-              console.log(queryMutation)
+            const chunkMutations = sliceIntoChunks(mutations, 1)
+            for (chunk of chunkMutations) {
+              const queryMutation = `mutation {` + chunk.join('\n') + `}`
+              if (inputs.debug == 'true') {
+                console.log('################ queryMutation ##################')
+                console.log(queryMutation)
+              }
+              const clientMutationId = await graphql(
+                  queryMutation
+                  ,
+                  {
+                    headers: {
+                      authorization: `token ` + inputs.token,
+                    },
+                  }
+              );
+              console.log(clientMutationId)
             }
-            const clientMutationId = await graphql(
-                queryMutation
-                ,
-                {
-                  headers: {
-                    authorization: `token ` + inputs.token,
-                  },
-                }
-            );
-            console.log(clientMutationId)
           }
           hasNextPage = node.items.pageInfo.hasNextPage
           endCursor = `, after: "` + node.items.pageInfo.endCursor + `"`
@@ -56380,6 +56383,14 @@ async function run() {
     core.error(error);
     core.setFailed(error.message);
   }
+}
+function sliceIntoChunks(arr, chunkSize) {
+  const res = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    res.push(chunk);
+  }
+  return res;
 }
 
 run()
