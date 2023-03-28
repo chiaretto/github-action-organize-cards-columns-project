@@ -107,8 +107,9 @@ async function run() {
                 let iconStatus = titleStatusSplited[0].trim()
                 let titleCardSplited = item.node.content.title.split('-')
                 let newTitleCard = iconStatus + ' ' + titleCardSplited.join('-').replace(/[^a-zA-Z0-9_\(\)\[\]\-\\\/\<\>\+ ]/g, '').replace(/  +/g, ' ').trim()
-                console.log('[' + item.node.type + '] (' + item.node.id + ') oldtitleCard:', item.node.content.title, ' | newTitleCard:', newTitleCard)
-                if (item.node.content.title !== newTitleCard) {
+                let needChange = item.node.content.title !== newTitleCard
+                console.log('('+needChange+') [' + item.node.type + '] (' + item.node.id + ') oldtitleCard:', item.node.content.title, ' | newTitleCard:', newTitleCard)
+                if (needChange) {
                   let mutation = ''
                   switch (item.node.type) {
                     case 'ISSUE':
