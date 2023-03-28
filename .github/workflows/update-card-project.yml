@@ -17,3 +17,4 @@ jobs:
         uses: chiaretto/github-action-organize-cards-columns-project@master
         with:
           github-token: "${{ secrets.ACCESS_TOKEN }}"
+          debug: true

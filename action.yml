@@ -11,3 +11,6 @@ inputs:
   github-token:
     description: 'The GITHUB_TOKEN secret'
     required: true
+  debug:
+    description: 'Debug GraphQL'
+    required: false

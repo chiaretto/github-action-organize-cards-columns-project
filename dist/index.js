@@ -56233,6 +56233,7 @@ async function run() {
 
     const inputs = {
       token: core.getInput('github-token', {required: true}),
+      debug: core.getInput('debug', {required: false}),
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
     };
@@ -56248,7 +56249,10 @@ async function run() {
           }
         }
         }`
-    // console.log(queryRepo)
+    if (inputs.debug == 'true') {
+      console.log('################ queryRepo ##################')
+      console.log(queryRepo)
+    }
     const { repository } = await graphql(
         queryRepo
         ,
@@ -56267,7 +56271,7 @@ async function run() {
         let hasNextPage = false
         let endCursor = ''
         do {
-          const query = `{
+          const queryGetCards = `{
                 node(id: "` + project.id + `") {
                   ... on ProjectV2 {
                     title
@@ -56306,9 +56310,12 @@ async function run() {
                   }
                 }
               }`
-          // console.log(query)
+          if (inputs.debug == 'true') {
+            console.log('################ queryGetCards ##################')
+            console.log(queryGetCards)
+          }
           const {node} = await graphql(
-              query,
+              queryGetCards,
               {
                 headers: {
                   authorization: `token ` + inputs.token,
@@ -56345,9 +56352,13 @@ async function run() {
             }
           }
           if (mutations.length) {
-            // console.log(mutations.join('\n'))
+            const queryMutation = `mutation {` + mutations.join('\n') + `}`
+            if (inputs.debug == 'true') {
+              console.log('################ queryMutation ##################')
+              console.log(queryMutation)
+            }
             const clientMutationId = await graphql(
-                `mutation {` + mutations.join('\n') + `}`
+                queryMutation
                 ,
                 {
                   headers: {
