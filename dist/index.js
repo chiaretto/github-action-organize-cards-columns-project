@@ -56338,6 +56338,7 @@ async function run() {
                   switch (item.node.type) {
                     case 'ISSUE':
                       mutation = `MyMutation` + item.node.content.id + `: updateIssue(input: {id: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
+                      mutations.push(mutation)
                       break;
                     case 'DRAFT_ISSUE':
                       mutation = `MyMutation` + item.node.content.id + `: updateProjectV2DraftIssue(input: {draftIssueId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
