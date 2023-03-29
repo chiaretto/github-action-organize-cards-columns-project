@@ -107,8 +107,8 @@ async function run() {
                 let iconStatus = titleStatusSplited[0].trim()
                 let newTitleCard = iconStatus + ' ' + item.node.content.title.replace(/[^\u0020-\u007e\u00a0-\u00ff\u0152\u0153\u0178]/g, '').replace(/[\\$'"]/g, "").replace(/  +/g, ' ').trim()
                 let needChange = item.node.content.title !== newTitleCard
-                console.log('('+needChange+') [' + item.node.type + '] (' + item.node.id + ') oldtitleCard:', item.node.content.title, ' | newTitleCard:', newTitleCard)
                 if (needChange) {
+                  console.log('('+needChange+') [' + item.node.type + '] (' + item.node.id + ') oldtitleCard:', item.node.content.title, ' | newTitleCard:', newTitleCard)
                   let mutation = ``
                   switch (item.node.type) {
                     case 'ISSUE':
@@ -129,7 +129,7 @@ async function run() {
             }
           }
           if (mutations.length) {
-            const chunkMutations = sliceIntoChunks(mutations, 1)
+            const chunkMutations = sliceIntoChunks(mutations, perPage)
             for (chunk of chunkMutations) {
               const queryMutation = `mutation {` + chunk.join('\n') + `}`
               if (inputs.debug == 'true') {
