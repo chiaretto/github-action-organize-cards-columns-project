@@ -56329,11 +56329,11 @@ async function run() {
               let titleStatusSplited = item.node?.fieldValueByName?.name.split('-')
               if (titleStatusSplited[0].trim().length <= 2) {
                 let iconStatus = titleStatusSplited[0].trim()
-                let newTitleCard = iconStatus + ' ' + item.node.content.title.replace(/[^\u0020-\u007e\u00a0-\u00ff\u0152\u0153\u0178]/g, '').replace(/  +/g, ' ').trim().replace(/[\\$'"]/g, "\\$&")
+                let newTitleCard = iconStatus + ' ' + item.node.content.title.replace(/[^\u0020-\u007e\u00a0-\u00ff\u0152\u0153\u0178]/g, '').replace(/  +/g, ' ').trim()
                 let needChange = item.node.content.title !== newTitleCard
                 console.log('('+needChange+') [' + item.node.type + '] (' + item.node.id + ') oldtitleCard:', item.node.content.title, ' | newTitleCard:', newTitleCard)
                 if (needChange) {
-                  let mutation = ''
+                  let mutation = ``
                   switch (item.node.type) {
                     case 'ISSUE':
                       mutation = `MyMutation` + item.node.content.id + `: updateIssue(input: {id: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
@@ -56355,7 +56355,7 @@ async function run() {
           if (mutations.length) {
             const chunkMutations = sliceIntoChunks(mutations, 1)
             for (chunk of chunkMutations) {
-              const queryMutation = `mutation {` + chunk.join('\n') + `}`
+              const queryMutation = `mutation {` + chunk.join('\n') + `}`.replace(/[\\$'"]/g, "\\$&")
               if (inputs.debug == 'true') {
                 console.log('################ queryMutation ##################')
                 console.log(queryMutation)
