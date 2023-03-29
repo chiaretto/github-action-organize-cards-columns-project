@@ -56329,8 +56329,7 @@ async function run() {
               let titleStatusSplited = item.node?.fieldValueByName?.name.split('-')
               if (titleStatusSplited[0].trim().length <= 2) {
                 let iconStatus = titleStatusSplited[0].trim()
-                let titleCardSplited = item.node.content.title.split('-')
-                let newTitleCard = iconStatus + ' ' + titleCardSplited.join('-').replace(/[^a-zA-Z0-9_\(\)\[\]\-\\\/\<\>\+\.\, ]/g, '').replace(/  +/g, ' ').trim()
+                let newTitleCard = iconStatus + ' ' + item.node.content.title.replace(/[^\u0020-\u007e\u00a0-\u00ff\u0152\u0153\u0178]/g, '').replace(/  +/g, ' ').trim()
                 let needChange = item.node.content.title !== newTitleCard
                 console.log('('+needChange+') [' + item.node.type + '] (' + item.node.id + ') oldtitleCard:', item.node.content.title, ' | newTitleCard:', newTitleCard)
                 if (needChange) {
