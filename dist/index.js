@@ -56329,7 +56329,7 @@ async function run() {
               let titleStatusSplited = item.node?.fieldValueByName?.name.split('-')
               if (titleStatusSplited[0].trim().length <= 2) {
                 let iconStatus = titleStatusSplited[0].trim()
-                let newTitleCard = iconStatus + ' ' + item.node.content.title.replace(/[^\u0020-\u007e\u00a0-\u00ff\u0152\u0153\u0178]/g, '').replace(/  +/g, ' ').trim()
+                let newTitleCard = iconStatus + ' ' + item.node.content.title.replace(/[^\u0020-\u007e\u00a0-\u00ff\u0152\u0153\u0178]/g, '').replace(/  +/g, ' ').trim().replace(/[\\$'"]/g, "\\$&")
                 let needChange = item.node.content.title !== newTitleCard
                 console.log('('+needChange+') [' + item.node.type + '] (' + item.node.id + ') oldtitleCard:', item.node.content.title, ' | newTitleCard:', newTitleCard)
                 if (needChange) {
@@ -56337,15 +56337,15 @@ async function run() {
                   switch (item.node.type) {
                     case 'ISSUE':
                       mutation = `MyMutation` + item.node.content.id + `: updateIssue(input: {id: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
-                      mutations.push(mutation.replace(/[\\$'"]/g, "\\$&"))
+                      mutations.push(mutation)
                       break;
                     case 'DRAFT_ISSUE':
                       mutation = `MyMutation` + item.node.content.id + `: updateProjectV2DraftIssue(input: {draftIssueId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
-                      mutations.push(mutation.replace(/[\\$'"]/g, "\\$&"))
+                      mutations.push(mutation)
                       break;
                     case 'PULL_REQUEST':
                       mutation = `MyMutation` + item.node.content.id + `: updatePullRequest(input: {pullRequestId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
-                      mutations.push(mutation.replace(/[\\$'"]/g, "\\$&"))
+                      mutations.push(mutation)
                       break;
                   }
                 }
