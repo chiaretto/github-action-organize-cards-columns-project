@@ -112,15 +112,15 @@ async function run() {
                   let mutation = ``
                   switch (item.node.type) {
                     case 'ISSUE':
-                      mutation = `MyMutation` + item.node.content.id.replace('-', '') + `: updateIssue(input: {id: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
+                      mutation = `MyMutation` + item.node.content.id.replaceAll('-', '') + `: updateIssue(input: {id: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
                       mutations.push(mutation)
                       break;
                     case 'DRAFT_ISSUE':
-                      mutation = `MyMutation` + item.node.content.id.replace('-', '') + `: updateProjectV2DraftIssue(input: {draftIssueId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
+                      mutation = `MyMutation` + item.node.content.id.replaceAll('-', '') + `: updateProjectV2DraftIssue(input: {draftIssueId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
                       mutations.push(mutation)
                       break;
                     case 'PULL_REQUEST':
-                      mutation = `MyMutation` + item.node.content.id.replace('-', '') + `: updatePullRequest(input: {pullRequestId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
+                      mutation = `MyMutation` + item.node.content.id.replaceAll('-', '') + `: updatePullRequest(input: {pullRequestId: "` + item.node.content.id + `", title: "` + newTitleCard + `"}) {clientMutationId}`
                       mutations.push(mutation)
                       break;
                   }
