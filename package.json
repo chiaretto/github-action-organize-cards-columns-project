@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.js -o dist --source-map --license licenses.txt"
+    "build": "ncc build index.js -o dist --source-map --license licenses.txt",
+    "local": "node local.js "
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "@octokit/graphql": "^5.0.5",
     "@octokit/graphql-schema": "^13.7.0",
     "@vercel/ncc": "^0.28.6",
+    "dotenv": "^16.3.1",
     "octokit": "^2.0.14"
   }
 }

@@ -20,6 +20,11 @@ https://unicode.org/emoji/charts/full-emoji-list.html
 
 **Required** `${{ secrets.GITHUB_TOKEN }}`
 
+### `allowed-repos`
+
+Optional - Enables update issues from other repositories that relies on the project
+`allowed-repos: 'repo1,repo2,repo3'`
+
 ## Example usage
 
 ```
@@ -42,4 +47,5 @@ jobs:
         uses: chiaretto/github-action-organize-cards-columns-project@master
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+          allowed-repos: "other-repo,another-repo"
 ```
