@@ -1,16 +1,19 @@
-name: 'Organize Project Cards with Columns Icons'
+name: "Organize Project Cards with Columns Icons"
 description: 'The icon of columns will be reply to cards of column, like "😀 - Column Name" then "😀 Name of Card".'
-author: 'Fabiano Chiaretto Fernandes'
+author: "Fabiano Chiaretto Fernandes"
 branding:
-  icon: 'edit'
-  color: 'purple'
+  icon: "edit"
+  color: "purple"
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node16"
+  main: "dist/index.js"
 inputs:
   github-token:
-    description: 'The GITHUB_TOKEN secret'
+    description: "The GITHUB_TOKEN secret"
     required: true
   debug:
-    description: 'Debug GraphQL'
+    description: "Debug GraphQL"
+    required: false
+  allowed-repos:
+    description: "Allowed Repos that are not the one which started the action"
     required: false
